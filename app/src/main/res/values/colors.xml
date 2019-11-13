@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF7700</color>
+    <color name="colorPrimaryDark">#D65600</color>
+    <color name="colorAccent">#FF7700</color>
+
+    <!-- Error -->
+    <color name="errorLighter">#FCC7C3</color>
+    <color name="errorLight">#F77B72</color>
+    <color name="errorNormal">#F44336</color>
+    <color name="errorDark">#E53935</color>
+    <color name="errorDarker">#D32F2F</color>
+
+    <!--Colores para los botones-->
+    <color name="blueNormal">#26B3FF</color>
+    <color name="greenNormal">#30BF28</color>
+    <color name="brownNormal">#806600</color>
+    <color name="redNormal">#BF0606</color>
+    <color name="btnEnabled">#F5F0F5</color>
+    <color name="txtEnabled">#8A878A</color>
+
+</resources>

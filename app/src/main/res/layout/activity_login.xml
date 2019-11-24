@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundLight"
+    android:paddingStart="@dimen/activity_normal_margin"
+    android:paddingEnd="@dimen/activity_normal_margin"
+    tools:context=".LoginActivity">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/txtInp_username_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/caviar_dreams"
+        android:hint="Usuario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/txtInp_passw_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_high_margin"
+        android:fontFamily="@font/caviar_dreams"
+        android:hint="Contraseña"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtInp_username_login" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_login"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/caviar_dreams"
+        android:text="Iniciar sesión"
+        android:textColor="@color/blackNormal"
+        android:textStyle="bold"
+        app:backgroundTint="@color/whiteNormal"
+        android:layout_marginTop="@dimen/activity_high_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtInp_passw_login"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrarse"
+        android:fontFamily="@font/caviar_dreams"
+        android:textColor="@color/blackNormal"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/activity_xhigh_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_login" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Olvidé mi contraseña"
+        android:fontFamily="@font/caviar_dreams"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/activity_xhigh_margin"
+        app:layout_constraintTop_toBottomOf="@id/btn_login"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".3" />
+</androidx.constraintlayout.widget.ConstraintLayout>

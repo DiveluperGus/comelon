@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "98835805415",
+    "firebase_url": "https://chatfirebasemessage-a0253.firebaseio.com",
+    "project_id": "chatfirebasemessage-a0253",
+    "storage_bucket": "chatfirebasemessage-a0253.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:98835805415:android:7cd1d1b85fbfe183a31e42",
+        "android_client_info": {
+          "package_name": "com.gustavo.comelon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "98835805415-3l560qfbc75ao3jq0ta2mqacp5qg0has.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDImmJc7To1GhI0EpMPQd6yReJ1sVnvenU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "98835805415-3l560qfbc75ao3jq0ta2mqacp5qg0has.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

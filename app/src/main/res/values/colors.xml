@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF7700</color>
-    <color name="colorPrimaryDark">#D65600</color>
-    <color name="colorAccent">#FF7700</color>
-    <color name="colorGradientLow">#CF9C1B</color>
+    <color name="colorPrimary">#FF5521</color>
+    <color name="colorPrimaryDark">#E64818</color>
+    <color name="colorAccent">#FF6E42</color>
+
 
     <!-- Error -->
     <color name="errorLighter">#FCC7C3</color>
@@ -13,7 +13,7 @@
     <color name="errorDarker">#D32F2F</color>
 
     <!--Colores para los botones-->
-    <color name="blueNormal">#26B3FF</color>
+    <color name="blueNormal">#00B3FF</color>
     <color name="greenNormal">#30BF28</color>
     <color name="brownNormal">#806600</color>
     <color name="redNormal">#BF0606</color>
@@ -24,5 +24,6 @@
 
     <!--Background-->
     <color name="backgroundLight">#F7FAF9</color>
+    <color name="backgroundDegrade">#FF8964</color>
 
 </resources>

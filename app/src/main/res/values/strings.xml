@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">comelon</string>
+    <string name="modify_info">Modificar información</string>
+    <string name="logout">Cerrar sesión</string>
 </resources>

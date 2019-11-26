@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Title1">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/caviar_dreams</item>
+    </style>
+
+    <style name="Title1.Regular">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Title1.Bold">
+            <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Title2">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/caviar_dreams</item>
+    </style>
+
+    <style name="Title2.Regular">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Title2.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Title3">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/caviar_dreams</item>
+    </style>
+
+    <style name="Title3.Regular">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Title3.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

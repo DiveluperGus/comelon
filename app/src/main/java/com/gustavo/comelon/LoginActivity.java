@@ -1,5 +1,6 @@
 package com.gustavo.comelon;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -57,7 +58,8 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         txtSignUp.setOnClickListener(view -> {
-            Toast.makeText(this, "Registrarse", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(this,SignupActivity.class);
+            startActivity(i);
         });
 
         txtForgotPassword.setOnClickListener(view -> {
@@ -113,6 +115,7 @@ public class LoginActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
+                            
                         }else{
                             Toast.makeText(LoginActivity.this, "Authentication failed",
                                     Toast.LENGTH_SHORT).show();

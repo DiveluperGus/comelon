@@ -1,8 +1,7 @@
-package com.gustavo.comelon;
+package com.gustavo.comelon.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +16,10 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.gustavo.comelon.R;
+import com.gustavo.comelon.ui.home.chef.HomeChefActivity;
+import com.gustavo.comelon.ui.home.commensal.HomeCommensalActivity;
+import com.gustavo.comelon.ui.signup.SignupActivity;
 import com.gustavo.comelon.utils.Regex;
 
 import java.util.regex.Matcher;
@@ -43,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private static final String TAG = "LoginActivity";
+    private int typeUser = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,37 +56,57 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        btnLogin.setOnClickListener(view ->{
-            if(validForm())
-                login(edtxtUsername.getText().toString(),edtxtPassword.getText().toString());
-        });
+        clearFields();
+        setBtnLogin();
+        setBtnSignUp();
+        setBtnForgotPass();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        clearFields();
+    }
+
+    private void clearFields() {
+        edtxtUsername.setText("");
+        edtxtPassword.setText("");
+    }
+
+    private void setBtnLogin() {
+        btnLogin.setOnClickListener(view -> {
+            if (validForm())
+                login(edtxtUsername.getText().toString(), edtxtPassword.getText().toString());
+        });
+    }
+
+    private void setBtnSignUp() {
         txtSignUp.setOnClickListener(view -> {
-            Intent i = new Intent(this,SignupActivity.class);
+            Intent i = new Intent(this, SignupActivity.class);
             startActivity(i);
         });
+    }
 
+    private void setBtnForgotPass() {
         txtForgotPassword.setOnClickListener(view -> {
             Toast.makeText(this, "Olvidé mi contraseña", Toast.LENGTH_SHORT).show();
         });
-
-
     }
 
     private boolean validForm() {
         boolean valid = false;
-        if(!edtxtUsername.getText().toString().isEmpty()){
-            if(validateEmail()){
+        if (!edtxtUsername.getText().toString().isEmpty()) {
+            if (validateEmail()) {
                 setInvisibleView(txtErrorEmail);
-                if(!edtxtPassword.getText().toString().isEmpty()){
-                    if(validatePassword()){
+                if (!edtxtPassword.getText().toString().isEmpty()) {
+                    if (validatePassword()) {
                         setInvisibleView(txtErrorPassw);
                         valid = true;
-                    }
-                    else
+                    } else
                         setVisibleView(txtErrorPassw);
                 }
-            }else
+            } else
                 setVisibleView(txtErrorEmail);
         }
         return valid;
@@ -90,33 +114,40 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean validatePassword() {
         Matcher matcher = Regex.VALID_PASSWORD_REGEX.matcher(edtxtPassword.getText().toString());
-        return  matcher.matches();
+        return matcher.matches();
     }
 
-    private boolean validateEmail(){
+    private boolean validateEmail() {
         Matcher matcher = Regex.VALID_EMAIL_REGEX.matcher(edtxtUsername.getText().toString());
         return matcher.matches();
     }
 
-
-    private void setVisibleView(View view){
+    private void setVisibleView(View view) {
         view.setVisibility(View.VISIBLE);
     }
 
-    private void setInvisibleView(View view){
+    private void setInvisibleView(View view) {
         view.setVisibility(View.GONE);
     }
 
-    private void login(String email,String password) {
-        mAuth.signInWithEmailAndPassword(email,password)
+    private void login(String email, String password) {
+        mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
-                            
-                        }else{
+                            Intent intent;
+                            if (typeUser == 1) {
+                                intent = new Intent(LoginActivity.this, HomeChefActivity.class);
+                            } else {
+                                intent = new Intent(LoginActivity.this, HomeCommensalActivity.class);
+                            }
+
+                            startActivity(intent);
+
+                        } else {
                             Toast.makeText(LoginActivity.this, "Authentication failed",
                                     Toast.LENGTH_SHORT).show();
                         }

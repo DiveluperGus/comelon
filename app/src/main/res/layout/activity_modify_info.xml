@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundLight"
+    tools:context=".ui.modify_info.ModifyInfoActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingStart="@dimen/activity_normal_margin"
+        android:paddingEnd="@dimen/activity_normal_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_name_modify_info"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="@dimen/activity_xxhigh_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/ic_person_name"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@drawable/ic_person"
+                android:tint="@color/txtEnabled"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <EditText
+                android:id="@+id/edtxt_name"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                style="@style/Title2.Regular"
+                android:hint="Nombre"
+                android:singleLine="true"
+                app:layout_constraintStart_toEndOf="@+id/ic_person_name"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_lastName_modify_info"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="@dimen/activity_high_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_name_modify_info"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/ic_person_lastName"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@drawable/ic_person"
+                android:tint="@color/txtEnabled"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <EditText
+                android:id="@+id/edtxt_lastName"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                style="@style/Title2.Regular"
+                android:hint="Apellido materno"
+                android:singleLine="true"
+                app:layout_constraintStart_toEndOf="@+id/ic_person_lastName"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_email_modify_info"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="@dimen/activity_high_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_lastName_modify_info"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/ic_person_email"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@drawable/ic_mail"
+                android:tint="@color/txtEnabled"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <EditText
+                android:id="@+id/edtxt_email"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                style="@style/Title2.Regular"
+                android:hint="Correo electrónico*"
+                android:singleLine="true"
+                app:layout_constraintStart_toEndOf="@+id/ic_person_email"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_phoneNumber"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="@dimen/activity_high_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_email_modify_info"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/ic_person_phone"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@drawable/ic_phone"
+                android:tint="@color/txtEnabled"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <EditText
+                android:id="@+id/edtxt_phone"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                style="@style/Title2.Regular"
+                android:hint="Número de teléfono"
+                android:singleLine="true"
+                android:inputType="number"
+                android:maxLength="10"
+                app:layout_constraintStart_toEndOf="@+id/ic_person_phone"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cancel_modify_info"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            style="@style/Title2.Bold"
+            android:text="Cancelar"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/blueNormal"
+            android:layout_marginEnd="@dimen/activity_normal_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="@id/guideline" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_accept_modify_info"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            style="@style/Title2.Bold"
+            android:text="Aceptar"
+            android:textAllCaps="false"
+            android:layout_marginStart="@dimen/activity_normal_margin"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".5"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".8"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

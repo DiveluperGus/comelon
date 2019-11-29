@@ -1,4 +1,4 @@
-package com.gustavo.comelon;
+package com.gustavo.comelon.ui.signup;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,8 @@ import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.SignInMethodQueryResult;
+import com.gustavo.comelon.R;
+import com.gustavo.comelon.ui.login.LoginActivity;
 import com.gustavo.comelon.utils.Regex;
 
 import java.util.regex.Matcher;
@@ -38,6 +40,8 @@ public class SignupActivity extends AppCompatActivity {
     EditText edtxtPassword;
     @BindView(R.id.txt_fields_required)
     TextView txtFieldsRequired;
+    @BindView(R.id.txt_error_email)
+    TextView txtErrorEmail;
     @BindView(R.id.txt_error_passw)
     TextView txtErrorPassword;
 
@@ -62,16 +66,27 @@ public class SignupActivity extends AppCompatActivity {
         btnSigUp.setOnClickListener(view -> {
             if (validateForm()) {
                 txtFieldsRequired.setVisibility(View.GONE);
-                if(validatePassword()){
-                    txtErrorPassword.setVisibility(View.GONE);
-                    verifyUserExists(edtxtEmail.getText().toString(), edtxtPassword.getText().toString());
+                if(validateEmail()){
+                    txtErrorEmail.setVisibility(View.GONE);
+                    if(validatePassword()){
+                        txtErrorPassword.setVisibility(View.GONE);
+                        verifyUserExists(edtxtEmail.getText().toString(), edtxtPassword.getText().toString());
+                    }else{
+                        txtErrorPassword.setVisibility(View.VISIBLE);
+                    }
                 }else{
-                    txtErrorPassword.setVisibility(View.VISIBLE);
+                    txtErrorEmail.setVisibility(View.VISIBLE);
                 }
             } else
                 txtFieldsRequired.setVisibility(View.VISIBLE);
         });
     }
+
+    private boolean validateEmail(){
+        Matcher matcher = Regex.VALID_EMAIL_REGEX.matcher(edtxtEmail.getText().toString());
+        return matcher.matches();
+    }
+
 
     private void verifyUserExists(final String email, final String password) {
         mAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
@@ -108,7 +123,7 @@ public class SignupActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.e(TAG, "Account created");
                             Toast.makeText(SignupActivity.this, "El usuario ha sido creado", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(SignupActivity.this,LoginActivity.class);
+                            Intent i = new Intent(SignupActivity.this, LoginActivity.class);
                             startActivity(i);
                         } else {
                             // If sign in fails, display a message to the user.

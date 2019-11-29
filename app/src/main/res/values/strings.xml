@@ -2,4 +2,6 @@
     <string name="app_name">comelon</string>
     <string name="modify_info">Modificar información</string>
     <string name="logout">Cerrar sesión</string>
+    <string name="msg_help_manage_commensal">Ve a los comensales que solicitaron la comida </string>
+    <string name="msg_adding_commensal">Puedes agregar a cualquier comensal a comidas próximas </string>
 </resources>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundLight"
+    tools:context=".ui.home.chef.HomeChefActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:contentInsetStart="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Home"
+            android:gravity="center"
+            style="@style/Title2.Bold"
+            android:layout_marginStart="36dp" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/welcome_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Title1.Regular"
+        android:text="Bienvenido"
+        android:textColor="@color/blackNormal"
+        android:layout_marginStart="@dimen/activity_high_margin"
+        android:layout_marginTop="@dimen/activity_high_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
+
+    <TextView
+        android:id="@+id/txt_username_home"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Nombre usuario"
+        style="@style/Title1.Bold"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/activity_normal_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcome_home"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_manage_meal_home"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        style="@style/Title2.Bold"
+        android:text="Administrar comida"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/blueNormal"
+        android:layout_marginStart="@dimen/activity_normal_margin"
+        android:layout_marginEnd="@dimen/activity_normal_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_manage_commensal_home"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        style="@style/Title2.Bold"
+        android:text="Administrar comensales"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/greenNormal"
+        android:layout_marginStart="@dimen/activity_normal_margin"
+        android:layout_marginTop="@dimen/activity_high_margin"
+        android:layout_marginEnd="@dimen/activity_normal_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_manage_meal_home"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

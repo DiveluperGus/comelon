@@ -7,7 +7,7 @@
     android:background="@color/backgroundLight"
     android:paddingStart="@dimen/activity_normal_margin"
     android:paddingEnd="@dimen/activity_normal_margin"
-    tools:context=".SignupActivity">
+    tools:context=".ui.signup.SignupActivity">
 
     <TextView
         style="@style/Title1.Bold"
@@ -112,6 +112,18 @@
             app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/txt_error_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Title4.Regular"
+        android:textColor="@color/errorDarker"
+        android:text="Correo electrónico no válido"
+        android:visibility="gone"
+        android:layout_marginTop="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_email"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_phoneNumber"
         android:layout_width="0dp"
@@ -137,6 +149,8 @@
             style="@style/Title2.Regular"
             android:hint="Número de teléfono"
             android:singleLine="true"
+            android:inputType="number"
+            android:maxLength="10"
             app:layout_constraintStart_toEndOf="@+id/ic_person_phone"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -179,7 +193,7 @@
         android:id="@+id/txt_fields_required"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        style="@style/Title3.Regular"
+        style="@style/Title4.Regular"
         android:textColor="@color/errorDarker"
         android:text="Los campos con * son obligatorios"
         android:visibility="gone"
@@ -191,11 +205,10 @@
         android:id="@+id/txt_error_passw"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        style="@style/Title3.Regular"
+        style="@style/Title4.Regular"
         android:textColor="@color/errorDarker"
-        android:text="Contraseña no válida"
+        android:text="La contraseña debe tener entre 8 y 15 carácteres. Acepta mayúsculas, minúsculas y números."
         android:visibility="gone"
-        android:layout_marginTop="@dimen/activity_normal_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_password"/>
 
@@ -205,6 +218,7 @@
         android:layout_height="48dp"
         style="@style/Title2.Bold"
         android:text="Registrarse"
+        android:textAllCaps="false"
         android:backgroundTint="@color/blueNormal"
         android:layout_marginBottom="@dimen/activity_xhigh_margin"
         app:layout_constraintStart_toStartOf="parent"

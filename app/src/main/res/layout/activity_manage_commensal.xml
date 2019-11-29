@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundLight"
+    tools:context=".ui.manage.commensal.ManageCommensalActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_manage_meal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingStart="@dimen/activity_normal_margin"
+        android:paddingEnd="@dimen/activity_normal_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <TextView
+            android:id="@+id/msg_consulting_commensal"
+            style="@style/Title3.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_xhigh_margin"
+            android:text="@string/msg_help_manage_commensal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_consulting_commensal"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            style="@style/Title2.Bold"
+            android:textAllCaps="false"
+            android:text="Consultar comensales"
+            android:layout_marginTop="@dimen/activity_xhigh_margin"
+            android:backgroundTint="@color/blueNormal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/msg_consulting_commensal" />
+
+        <TextView
+            android:id="@+id/msg_adding_commensal"
+            style="@style/Title3.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_xxhigh_margin"
+            android:text="@string/msg_adding_commensal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_consulting_commensal" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_add_commensal"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            style="@style/Title2.Bold"
+            android:textAllCaps="false"
+            android:text="Agregar comensal"
+            android:backgroundTint="@color/greenNormal"
+            android:layout_marginTop="@dimen/activity_high_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/msg_adding_commensal" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

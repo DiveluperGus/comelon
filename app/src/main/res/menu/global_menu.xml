@@ -6,7 +6,6 @@
         android:title="@string/modify_info" />
 
     <item android:id="@+id/logout"
-        android:title="@string/logout"
-        app:showAsAction="never"/>
+        android:title="@string/logout" />
 
 </menu>

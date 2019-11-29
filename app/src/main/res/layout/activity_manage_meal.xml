@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.manage.meal.ManageMealActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_manage_meal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingStart="@dimen/activity_normal_margin"
+        android:paddingEnd="@dimen/activity_normal_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <TextView
+            android:id="@+id/msg_manage_meal"
+            style="@style/Title3.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_xhigh_margin"
+            android:text="Elige la opción que gustes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/Title3.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_normal_margin"
+            android:gravity="center_horizontal"
+            android:text="Nombre chef"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/msg_manage_meal" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_create_meal_mgn_meal"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            style="@style/Title2.Bold"
+            android:textAllCaps="false"
+            android:text="Crear comida"
+            android:backgroundTint="@color/blueNormal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_edit_meal_mgn_meal"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            style="@style/Title2.Bold"
+            android:textAllCaps="false"
+            android:text="Editar comida"
+            android:backgroundTint="@color/greenNormal"
+            android:layout_marginTop="@dimen/activity_high_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_create_meal_mgn_meal" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_status_meal_mgn_meal"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            style="@style/Title2.Bold"
+            android:textAllCaps="false"
+            android:text="Estatus de la comida"
+            android:backgroundTint="@color/brownNormal"
+            android:layout_marginTop="@dimen/activity_high_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_edit_meal_mgn_meal" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_delete_meal_mgn_meal"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            style="@style/Title2.Bold"
+            android:textAllCaps="false"
+            android:text="Eliminar comida"
+            android:backgroundTint="@color/redNormal"
+            android:layout_marginTop="@dimen/activity_high_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_status_meal_mgn_meal" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

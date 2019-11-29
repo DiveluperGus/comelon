@@ -4,4 +4,5 @@
     <dimen name="activity_normal_margin">16dp</dimen>
     <dimen name="activity_high_margin">32dp</dimen>
     <dimen name="activity_xhigh_margin">48dp</dimen>
+    <dimen name="activity_xxhigh_margin">64dp</dimen>
 </resources>

@@ -1,19 +1,19 @@
 package com.gustavo.comelon.ui.manage.meal;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.google.android.material.button.MaterialButton;
 import com.gustavo.comelon.R;
 import com.gustavo.comelon.ui.manage.meal.create.CreateMealActivity;
+import com.gustavo.comelon.ui.manage.meal.edit.EditMealActivity;
 import com.gustavo.comelon.utils.Constants;
 
 import butterknife.BindView;
@@ -38,7 +38,8 @@ public class ManageMealActivity extends AppCompatActivity {
     MaterialButton btnDeleteMeal;
 
     private SharedPreferences prefs;
-    private boolean mealCreated;
+    private String statusMeal;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,10 +51,25 @@ public class ManageMealActivity extends AppCompatActivity {
     }
 
     private void setButtons() {
-        prefs = getSharedPreferences(Constants.MY_PREFS,MODE_PRIVATE);
-        mealCreated = prefs.getBoolean("mealCreated",false);
+        getStatusMealSharedPrefs();
 
-        if(!mealCreated){
+        if (statusMeal.equals("created") || statusMeal.equals("edited")) {
+            disableButton(btnCreateMeal);
+
+            enableButton(btnEditMeal, R.color.greenNormal);
+            btnEditMeal.setOnClickListener(view -> {
+                startActivity(new Intent(ManageMealActivity.this, EditMealActivity.class));
+            });
+            enableButton(btnStatusMeal, R.color.brownNormal);
+            btnStatusMeal.setOnClickListener(view -> {
+
+            });
+
+            enableButton(btnDeleteMeal, R.color.redNormal);
+            btnDeleteMeal.setOnClickListener(view -> {
+
+            });
+        } else {
             btnCreateMeal.setOnClickListener(view -> {
                 Intent i = new Intent(ManageMealActivity.this, CreateMealActivity.class);
                 startActivity(i);
@@ -62,24 +78,13 @@ public class ManageMealActivity extends AppCompatActivity {
             disableButton(btnEditMeal);
             disableButton(btnStatusMeal);
             disableButton(btnDeleteMeal);
-        }else{
-            disableButton(btnCreateMeal);
-
-            enableButton(btnEditMeal,R.color.greenNormal);
-            btnEditMeal.setOnClickListener(view -> {
-
-            });
-            enableButton(btnStatusMeal,R.color.brownNormal);
-            btnStatusMeal.setOnClickListener(view -> {
-
-            });
-
-            enableButton(btnDeleteMeal,R.color.redNormal);
-            btnDeleteMeal.setOnClickListener(view -> {
-
-            });
         }
 
+    }
+
+    private void getStatusMealSharedPrefs() {
+        prefs = getSharedPreferences(Constants.MEAL, MODE_PRIVATE);
+        statusMeal = prefs.getString("statusMeal", "");
     }
 
     private void disableButton(MaterialButton btn) {
@@ -87,7 +92,7 @@ public class ManageMealActivity extends AppCompatActivity {
         btn.setTextColor(getResources().getColor(R.color.txtDisabled));
     }
 
-    private void enableButton(MaterialButton btn,int bgColor){
+    private void enableButton(MaterialButton btn, int bgColor) {
         btn.setBackgroundColor(getResources().getColor(bgColor));
         btn.setTextColor(getResources().getColor(R.color.whiteNormal));
     }
@@ -98,5 +103,11 @@ public class ManageMealActivity extends AppCompatActivity {
         titleToolbar.setText("Administrar comida");
         btnBack.setVisibility(View.VISIBLE);
         btnBack.setOnClickListener(view -> finish());
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        getStatusMealSharedPrefs();
     }
 }

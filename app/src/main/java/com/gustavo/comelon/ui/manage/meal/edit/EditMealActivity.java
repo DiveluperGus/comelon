@@ -1,4 +1,9 @@
-package com.gustavo.comelon.ui.manage.meal.create;
+package com.gustavo.comelon.ui.manage.meal.edit;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -7,7 +12,6 @@ import android.content.SharedPreferences;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
@@ -20,20 +24,16 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import com.google.android.material.button.MaterialButton;
 import com.gustavo.comelon.R;
 import com.gustavo.comelon.ui.manage.meal.ManageMealActivity;
+import com.gustavo.comelon.ui.manage.meal.create.CreateNewMealActivity;
 import com.gustavo.comelon.utils.Constants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CreateNewMealActivity extends AppCompatActivity implements TextWatcher {
+public class EditMealActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -41,8 +41,6 @@ public class CreateNewMealActivity extends AppCompatActivity implements TextWatc
     TextView titleToolbar;
     @BindView(R.id.toolbar_arrow_back)
     ImageButton btnBack;
-    @BindView(R.id.progress_bar_createMeal)
-    ProgressBar progressBar;
 
     @BindView(R.id.scrollview_create_meal_form)
     ScrollView scrollViewForm;
@@ -77,19 +75,17 @@ public class CreateNewMealActivity extends AppCompatActivity implements TextWatc
     private String descriptionMeal;
     private String numPersons;
     private String costMeal;
-    private String status;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_new_meal);
+        setContentView(R.layout.activity_edit_meal);
         ButterKnife.bind(this);
 
-        getDataSharedPrefs();
         setToolbar();
-        showCreateMealFormView();
-
+        getDataSharedPrefs();
+        showEditMealFormView();
     }
 
     private void getDataSharedPrefs() {
@@ -100,26 +96,14 @@ public class CreateNewMealActivity extends AppCompatActivity implements TextWatc
         descriptionMeal = prefs.getString("descriptionMeal", "");
         numPersons = prefs.getString("numPersons", "");
         costMeal = prefs.getString("costMeal", "");
-        status = prefs.getString("statusMeal","");
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private void showCreateMealFormView() {
-        setProgressBar(66);
+    private void showEditMealFormView() {
 
-        if (status != null && !nameMeal.isEmpty()) {
+        if (nameMeal != null && !nameMeal.isEmpty()) {
             fillFieldsForm();
         }
-
-        //Configuración de los escuchadores en los campos del formulario
-        edtxtNameMeal.addTextChangedListener(this);
-        edtxtNameStew.addTextChangedListener(this);
-        edtxtDescription.addTextChangedListener(this);
-        edtxtNumberPersons.addTextChangedListener(this);
-        edtxtCostMeal.addTextChangedListener(this);
-        txtDeadline.addTextChangedListener(this);
-        txtHourLimit.addTextChangedListener(this);
 
         //Configuración de los botones en el formulario
         btnDeadline.setOnClickListener(view -> {
@@ -131,31 +115,26 @@ public class CreateNewMealActivity extends AppCompatActivity implements TextWatc
         });
 
         btnCancelCreateMeal.setOnClickListener(view -> {
-            SharedPreferences.Editor editor = getSharedPreferences(Constants.MEAL, MODE_PRIVATE).edit();
-            editor.putString("statusMeal","deleted");
-            editor.apply();
             finish();
         });
 
         btnAcceptCreateMeal.setOnClickListener(view -> {
             if (validateCreateNewMealForm()) {
-
                 SharedPreferences.Editor editor = getSharedPreferences(Constants.MEAL,MODE_PRIVATE).edit();
-                editor.putString("nameMeal", edtxtNameMeal.toString());
-                editor.putString("nameStew", edtxtNameStew.toString());
-                editor.putString("descriptionMeal", edtxtDescription.toString());
-                editor.putString("numPersons", edtxtNumberPersons.toString());
-                editor.putString("costMeal", edtxtCostMeal.toString());
-                editor.putString("statusMeal","created");
+                editor.putString("nameMeal", edtxtNameMeal.getText().toString());
+                editor.putString("nameStew", edtxtNameStew.getText().toString());
+                editor.putString("descriptionMeal", edtxtDescription.getText().toString());
+                editor.putString("numPersons", edtxtNumberPersons.getText().toString());
+                editor.putString("costMeal", edtxtCostMeal.getText().toString());
+                editor.putString("statusMeal","edited");
                 editor.apply();
 
-                startActivity(new Intent(CreateNewMealActivity.this, ManageMealActivity.class));
-                Toast.makeText(this, "Comida creada", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(EditMealActivity.this, ManageMealActivity.class));
+                Toast.makeText(this, "Operación exitosa", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Ningún campo debe estar vacío", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     private void fillFieldsForm() {
@@ -165,7 +144,6 @@ public class CreateNewMealActivity extends AppCompatActivity implements TextWatc
         edtxtNumberPersons.setText(numPersons);
         edtxtCostMeal.setText(costMeal);
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void pickerHourline() {
@@ -198,7 +176,7 @@ public class CreateNewMealActivity extends AppCompatActivity implements TextWatc
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
-        datePickerDialog = new DatePickerDialog(CreateNewMealActivity.this, new DatePickerDialog.OnDateSetListener() {
+        datePickerDialog = new DatePickerDialog(EditMealActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
                 txtDeadline.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
@@ -215,10 +193,6 @@ public class CreateNewMealActivity extends AppCompatActivity implements TextWatc
                 && !txtHourLimit.getText().toString().isEmpty();
     }
 
-    private void setProgressBar(int i) {
-        progressBar.setProgress(i);
-    }
-
     private void setToolbar() {
         setSupportActionBar(toolbar);
         titleToolbar.setVisibility(View.VISIBLE);
@@ -226,26 +200,5 @@ public class CreateNewMealActivity extends AppCompatActivity implements TextWatc
         btnBack.setVisibility(View.VISIBLE);
         btnBack.setOnClickListener(view -> finish());
     }
-
-    /////////////////////////Métodos propios de la clase TextWatcher//////////////////////////
-    @Override
-    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-    }
-
-    @Override
-    public void afterTextChanged(Editable editable) {
-        if (validateCreateNewMealForm()) {
-            setProgressBar(100);
-        } else {
-            setProgressBar(66);
-        }
-    }
-    ////////////////////////////////////////////////////////////////////////////////////////
 
 }

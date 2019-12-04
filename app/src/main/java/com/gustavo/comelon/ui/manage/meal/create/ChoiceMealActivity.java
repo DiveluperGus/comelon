@@ -1,6 +1,7 @@
 package com.gustavo.comelon.ui.manage.meal.create;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gustavo.comelon.R;
 import com.gustavo.comelon.adapter.MealAdapter;
 import com.gustavo.comelon.model.Meal;
+import com.gustavo.comelon.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -71,7 +73,7 @@ public class ChoiceMealActivity extends AppCompatActivity {
             mealList = new ArrayList<>();
             for (int i = 1; i < 10; i++) {
                 mealList.add(new Meal("Pollo " + i, "Arroz " + i, " Hola, esta es la descripción de la comida ",
-                        4, 22.22f, "22/07/2019", "23:40", "create"));
+                        4, 22.22f, "22/07/2019", "23:40", "created"));
             }
 
             rvMeals.setHasFixedSize(true);
@@ -81,15 +83,17 @@ public class ChoiceMealActivity extends AppCompatActivity {
 
             mealAdapter.setItemClickListener(position -> {
                 Intent i = new Intent(ChoiceMealActivity.this, CreateNewMealActivity.class);
-                Bundle args = new Bundle();
                 Meal m = mealList.get(position);
-                args.putString("nameMeal", m.getNameMeal());
-                args.putString("nameStew", m.getNameStew());
-                args.putString("descriptionMeal", m.getDescription());
-                args.putString("numPersons", m.getNumNecessaryPersons() + "");
-                args.putString("costMeal", m.getMealCost() + "");
 
-                startActivity(i.putExtras(args));
+                SharedPreferences.Editor editor = getSharedPreferences(Constants.MEAL,MODE_PRIVATE).edit();
+                editor.putString("nameMeal", m.getNameMeal());
+                editor.putString("nameStew", m.getNameStew());
+                editor.putString("descriptionMeal", m.getDescription());
+                editor.putString("numPersons", m.getNumNecessaryPersons() + "");
+                editor.putString("costMeal", m.getMealCost() + "");
+                editor.putString("statusMeal",m.getStatus());
+                editor.apply();
+                startActivity(i);
 
             });
             configureEditMeal = true;

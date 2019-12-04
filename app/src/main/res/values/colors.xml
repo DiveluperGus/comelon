@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF5521</color>
-    <color name="colorPrimaryDark">#E64818</color>
-    <color name="colorAccent">#FF6E42</color>
+    <color name="colorPrimary">#F88005</color>
+    <color name="colorPrimaryDark">#DA6E00</color>
+    <color name="colorAccent">#006CDA</color>
 
 
     <!-- Error -->
@@ -17,10 +17,15 @@
     <color name="greenNormal">#30BF28</color>
     <color name="brownNormal">#806600</color>
     <color name="redNormal">#BF0606</color>
-    <color name="btnEnabled">#F5F0F5</color>
-    <color name="txtEnabled">#8A878A</color>
+    <color name="btnDisabled">#F5F0F5</color>
+    <color name="txtDisabled">#8A878A</color>
     <color name="whiteNormal">#FFFFFF</color>
     <color name="blackNormal">#000</color>
+
+    <color name="progressBackground">#E9E9E9</color>
+    <color name="progressForeground">#F8A305</color>
+
+    <color name="toolbarBackground">#F88005</color>
 
     <!--Background-->
     <color name="backgroundLight">#F7FAF9</color>

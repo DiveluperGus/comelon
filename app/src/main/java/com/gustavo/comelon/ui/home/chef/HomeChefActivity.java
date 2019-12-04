@@ -1,6 +1,8 @@
 package com.gustavo.comelon.ui.home.chef;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,6 +60,7 @@ public class HomeChefActivity extends AppCompatActivity {
 
     private void setToolbar() {
         setSupportActionBar(toolbar);
+        toolbar.getOverflowIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
     }
 
     @Override

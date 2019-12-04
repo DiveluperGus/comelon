@@ -9,9 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.modify_info.ModifyInfoActivity"></activity>
+        <activity android:name=".ui.manage.meal.create.ChoiceMealActivity"></activity>
+        <activity android:name=".ui.manage.meal.create.CreateNewMealActivity" />
+        <activity android:name=".ui.manage.meal.create.CreateMealActivity" />
+        <activity android:name=".ui.modify_info.ModifyInfoActivity" />
         <activity android:name=".ui.manage.commensal.ManageCommensalActivity" />
-        <activity android:name=".ui.manage.meal.ManageMealActivity" />
+        <activity android:name=".ui.manage.meal.ManageMealActivity" android:launchMode="singleTask"/>
         <activity
             android:name=".ui.home.commensal.HomeCommensalActivity"
             android:launchMode="singleTask" />

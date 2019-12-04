@@ -4,4 +4,6 @@
     <string name="logout">Cerrar sesión</string>
     <string name="msg_help_manage_commensal">Ve a los comensales que solicitaron la comida </string>
     <string name="msg_adding_commensal">Puedes agregar a cualquier comensal a comidas próximas </string>
+    <string name="msg_create_new_o_choice_meal">Puedes crear una comida nueva o escoger una de entre las más populares anteriormente creadas</string>
+    <string name="msg_choice_between">Estas son las 10 comidas en la que más comensales estuvieron</string>
 </resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    android:layout_marginStart="@dimen/activity_middle_margin"
+    android:layout_marginTop="@dimen/activity_middle_margin"
+    android:layout_marginEnd="@dimen/activity_middle_margin"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/activity_middle_margin"
+        android:paddingTop="@dimen/activity_middle_margin"
+        android:paddingEnd="@dimen/activity_middle_margin"
+        android:paddingBottom="@dimen/activity_middle_margin">
+
+        <TextView
+            android:id="@+id/txt_name_meal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre de la comida"
+            style="@style/Title3.Bold"
+            android:layout_marginEnd="@dimen/activity_xxhigh_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"/>
+
+        <TextView
+            android:id="@+id/txt_price_meal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$20.00"
+            style="@style/Title3.Bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/txt_description_meal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Descripción"
+            style="@style/Title3.Regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_name_meal"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

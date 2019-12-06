@@ -1,10 +1,5 @@
 package com.gustavo.comelon.ui.manage.meal.edit;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -12,22 +7,24 @@ import android.content.SharedPreferences;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.google.android.material.button.MaterialButton;
 import com.gustavo.comelon.R;
 import com.gustavo.comelon.ui.manage.meal.ManageMealActivity;
-import com.gustavo.comelon.ui.manage.meal.create.CreateNewMealActivity;
 import com.gustavo.comelon.utils.Constants;
 
 import butterknife.BindView;
@@ -120,13 +117,13 @@ public class EditMealActivity extends AppCompatActivity {
 
         btnAcceptCreateMeal.setOnClickListener(view -> {
             if (validateCreateNewMealForm()) {
-                SharedPreferences.Editor editor = getSharedPreferences(Constants.MEAL,MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = getSharedPreferences(Constants.MEAL, MODE_PRIVATE).edit();
                 editor.putString("nameMeal", edtxtNameMeal.getText().toString());
                 editor.putString("nameStew", edtxtNameStew.getText().toString());
                 editor.putString("descriptionMeal", edtxtDescription.getText().toString());
                 editor.putString("numPersons", edtxtNumberPersons.getText().toString());
                 editor.putString("costMeal", edtxtCostMeal.getText().toString());
-                editor.putString("statusMeal","edited");
+                editor.putString("statusMeal", "edited");
                 editor.apply();
 
                 startActivity(new Intent(EditMealActivity.this, ManageMealActivity.class));
@@ -196,7 +193,7 @@ public class EditMealActivity extends AppCompatActivity {
     private void setToolbar() {
         setSupportActionBar(toolbar);
         titleToolbar.setVisibility(View.VISIBLE);
-        titleToolbar.setText("Crear comida");
+        titleToolbar.setText("Editar comida");
         btnBack.setVisibility(View.VISIBLE);
         btnBack.setOnClickListener(view -> finish());
     }

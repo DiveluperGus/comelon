@@ -1,12 +1,15 @@
 package com.gustavo.comelon.ui.manage.meal;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -19,7 +22,7 @@ import com.gustavo.comelon.utils.Constants;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ManageMealActivity extends AppCompatActivity {
+public class ManageMealActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -55,31 +58,51 @@ public class ManageMealActivity extends AppCompatActivity {
 
         if (statusMeal.equals("created") || statusMeal.equals("edited")) {
             disableButton(btnCreateMeal);
-
             enableButton(btnEditMeal, R.color.greenNormal);
-            btnEditMeal.setOnClickListener(view -> {
-                startActivity(new Intent(ManageMealActivity.this, EditMealActivity.class));
-            });
             enableButton(btnStatusMeal, R.color.brownNormal);
-            btnStatusMeal.setOnClickListener(view -> {
-
-            });
-
             enableButton(btnDeleteMeal, R.color.redNormal);
-            btnDeleteMeal.setOnClickListener(view -> {
-
-            });
         } else {
-            btnCreateMeal.setOnClickListener(view -> {
-                Intent i = new Intent(ManageMealActivity.this, CreateMealActivity.class);
-                startActivity(i);
-            });
-
+            enableButton(btnCreateMeal,R.color.blueNormal);
             disableButton(btnEditMeal);
             disableButton(btnStatusMeal);
             disableButton(btnDeleteMeal);
         }
 
+    }
+
+    private void showAlertDialogDeleteMeal() {
+        String nMeal = getNameMeal();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(getResources().getDrawable(R.drawable.ic_warning));
+        builder.setTitle("¿Quieres eliminar la comida?");
+        builder.setMessage("Eliminarás la comida " + nMeal);
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                deleteMealSharedPrefs();
+                enableButton(btnCreateMeal,R.color.blueNormal);
+                disableButton(btnEditMeal);
+                disableButton(btnStatusMeal);
+                disableButton(btnDeleteMeal);
+            }
+        });
+
+        builder.setNegativeButton("Cancelar", null);
+
+        builder.create();
+        builder.show();
+    }
+
+    private void deleteMealSharedPrefs() {
+        SharedPreferences sp = getSharedPreferences(Constants.MEAL,MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("statusMeal","deleted");
+        editor.apply();
+    }
+
+    private String getNameMeal() {
+        SharedPreferences sp = getSharedPreferences(Constants.MEAL,MODE_PRIVATE);
+        return sp.getString("nameMeal","");
     }
 
     private void getStatusMealSharedPrefs() {
@@ -90,11 +113,13 @@ public class ManageMealActivity extends AppCompatActivity {
     private void disableButton(MaterialButton btn) {
         btn.setBackgroundColor(getResources().getColor(R.color.btnDisabled));
         btn.setTextColor(getResources().getColor(R.color.txtDisabled));
+        btn.setOnClickListener(null);
     }
 
     private void enableButton(MaterialButton btn, int bgColor) {
         btn.setBackgroundColor(getResources().getColor(bgColor));
         btn.setTextColor(getResources().getColor(R.color.whiteNormal));
+        btn.setOnClickListener(this);
     }
 
     private void setToolbar() {
@@ -106,8 +131,27 @@ public class ManageMealActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
+    protected void onResume() {
+        super.onResume();
         getStatusMealSharedPrefs();
+        setButtons();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btn_create_meal_mgn_meal:
+                Intent i = new Intent(ManageMealActivity.this, CreateMealActivity.class);
+                startActivity(i);
+                break;
+            case R.id.btn_edit_meal_mgn_meal:
+                startActivity(new Intent(ManageMealActivity.this, EditMealActivity.class));
+                break;
+            case R.id.btn_status_meal_mgn_meal:
+                break;
+            case R.id.btn_delete_meal_mgn_meal:
+                showAlertDialogDeleteMeal();
+                break;
+        }
     }
 }

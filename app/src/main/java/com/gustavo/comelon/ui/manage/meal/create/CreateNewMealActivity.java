@@ -108,7 +108,8 @@ public class CreateNewMealActivity extends AppCompatActivity implements TextWatc
     private void showCreateMealFormView() {
         setProgressBar(66);
 
-        if (status != null && !nameMeal.isEmpty()) {
+        if (status != null && !status.isEmpty() && !status.equalsIgnoreCase("deleted")) {
+            Toast.makeText(this, "status: " + status, Toast.LENGTH_SHORT).show();
             fillFieldsForm();
         }
 
@@ -141,11 +142,11 @@ public class CreateNewMealActivity extends AppCompatActivity implements TextWatc
             if (validateCreateNewMealForm()) {
 
                 SharedPreferences.Editor editor = getSharedPreferences(Constants.MEAL,MODE_PRIVATE).edit();
-                editor.putString("nameMeal", edtxtNameMeal.toString());
-                editor.putString("nameStew", edtxtNameStew.toString());
-                editor.putString("descriptionMeal", edtxtDescription.toString());
-                editor.putString("numPersons", edtxtNumberPersons.toString());
-                editor.putString("costMeal", edtxtCostMeal.toString());
+                editor.putString("nameMeal", edtxtNameMeal.getText().toString());
+                editor.putString("nameStew", edtxtNameStew.getText().toString());
+                editor.putString("descriptionMeal", edtxtDescription.getText().toString());
+                editor.putString("numPersons", edtxtNumberPersons.getText().toString());
+                editor.putString("costMeal", edtxtCostMeal.getText().toString());
                 editor.putString("statusMeal","created");
                 editor.apply();
 

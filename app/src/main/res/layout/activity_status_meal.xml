@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.manage.meal.status.StatusMealActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_status_meal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingStart="@dimen/activity_normal_margin"
+        android:paddingTop="@dimen/activity_normal_margin"
+        android:paddingEnd="@dimen/activity_normal_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <TextView
+            android:id="@+id/txt_name_meal"
+            style="@style/Title3.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre de la comida"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_deadline_and_timelimit"
+            style="@style/Title3.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_middle_margin"
+            android:text="Vence el DD/MM/AAAA a las 12:00 horas"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_name_meal" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_made_meal"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            style="@style/Title2.Bold"
+            android:textAllCaps="false"
+            android:text="Ya está la comida preparada"
+            android:backgroundTint="@color/blueNormal"
+            android:layout_marginTop="@dimen/activity_xhigh_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_deadline_and_timelimit"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_go_by_tortillas"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            style="@style/Title2.Bold"
+            android:textAllCaps="false"
+            android:text="Ir por las tortillas"
+            android:textColor="@color/txtDisabled"
+            android:backgroundTint="@color/btnDisabled"
+            android:layout_marginTop="@dimen/activity_high_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_made_meal"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_commensal_suscribed"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_go_by_tortillas"
+            app:layout_constraintBottom_toTopOf="@id/btn_send_result"
+            tools:listitem="@layout/cardview_name_commensal"
+            tools:itemCount="5" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_send_result"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            style="@style/Title2.Bold"
+            android:textAllCaps="false"
+            android:text="Enviar resultado"
+            android:visibility="invisible"
+            android:textColor="@color/txtDisabled"
+            android:backgroundTint="@color/btnDisabled"
+            android:layout_marginBottom="@dimen/activity_normal_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

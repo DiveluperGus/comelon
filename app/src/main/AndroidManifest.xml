@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.manage.meal.edit.EditMealActivity"></activity>
+        <activity android:name=".ui.manage.meal.status.StatusMealActivity"></activity>
+        <activity android:name=".ui.manage.meal.edit.EditMealActivity" />
         <activity android:name=".ui.manage.meal.create.ChoiceMealActivity" />
         <activity android:name=".ui.manage.meal.create.CreateNewMealActivity" />
         <activity android:name=".ui.manage.meal.create.CreateMealActivity" />

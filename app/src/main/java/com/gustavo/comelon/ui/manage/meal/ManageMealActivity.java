@@ -17,6 +17,7 @@ import com.google.android.material.button.MaterialButton;
 import com.gustavo.comelon.R;
 import com.gustavo.comelon.ui.manage.meal.create.CreateMealActivity;
 import com.gustavo.comelon.ui.manage.meal.edit.EditMealActivity;
+import com.gustavo.comelon.ui.manage.meal.status.StatusMealActivity;
 import com.gustavo.comelon.utils.Constants;
 
 import butterknife.BindView;
@@ -42,6 +43,7 @@ public class ManageMealActivity extends AppCompatActivity implements View.OnClic
 
     private SharedPreferences prefs;
     private String statusMeal;
+    private String mealComplete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,12 +64,22 @@ public class ManageMealActivity extends AppCompatActivity implements View.OnClic
             enableButton(btnStatusMeal, R.color.brownNormal);
             enableButton(btnDeleteMeal, R.color.redNormal);
         } else {
-            enableButton(btnCreateMeal,R.color.blueNormal);
-            disableButton(btnEditMeal);
-            disableButton(btnStatusMeal);
-            disableButton(btnDeleteMeal);
+            if(statusMeal.equals("made")){
+                btnCreateMeal.setBackgroundColor(getResources().getColor(R.color.blueNormal));
+                btnCreateMeal.setTextColor(getResources().getColor(R.color.whiteNormal));
+                btnCreateMeal.setOnClickListener(view -> {
+                    Toast.makeText(this, "Ningún comensal debe estar en estado rojo para poder crear una comida", Toast.LENGTH_LONG).show();
+                });
+                disableButton(btnEditMeal);
+                disableButton(btnStatusMeal);
+                disableButton(btnDeleteMeal);
+            } else if(statusMeal.equals("complete")){
+                enableButton(btnCreateMeal,R.color.blueNormal);
+                disableButton(btnEditMeal);
+                disableButton(btnStatusMeal);
+                disableButton(btnDeleteMeal);
+            }
         }
-
     }
 
     private void showAlertDialogDeleteMeal() {
@@ -148,6 +160,7 @@ public class ManageMealActivity extends AppCompatActivity implements View.OnClic
                 startActivity(new Intent(ManageMealActivity.this, EditMealActivity.class));
                 break;
             case R.id.btn_status_meal_mgn_meal:
+                startActivity(new Intent(ManageMealActivity.this, StatusMealActivity.class));
                 break;
             case R.id.btn_delete_meal_mgn_meal:
                 showAlertDialogDeleteMeal();

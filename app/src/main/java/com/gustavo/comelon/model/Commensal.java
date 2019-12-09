@@ -6,24 +6,30 @@ public class Commensal {
     private String surname;
     private String email;
     private String phone;
-    private boolean selected;
-    private String rol;
+    private int rol;
+    private boolean selectedDraw;
+    private int status;
+    private int remeaningMeals;
+    private boolean suscribedMeal;
 
-    public Commensal(String name, String surname, String email, String phone, boolean selected) {
+    public Commensal(String name, String surname, String email, String phone, int rol, boolean selectedDraw, int status, int remeaningMeals, boolean suscribedMeal) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.phone = phone;
-        this.selected = selected;
+        this.rol = rol;
+        this.selectedDraw = selectedDraw;
+        this.status = status;
+        this.remeaningMeals = remeaningMeals;
+        this.suscribedMeal = suscribedMeal;
     }
 
-    public Commensal(String name, String surname, String email, String phone, boolean selected, String rol) {
+    public Commensal(String name, String surname, String email, String phone, int rol, boolean selectedDraw) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.phone = phone;
-        this.selected = selected;
-        this.rol = rol;
+        this.selectedDraw = selectedDraw;
     }
 
     public String getName() {
@@ -43,14 +49,30 @@ public class Commensal {
     }
 
     public boolean isSelected() {
-        return selected;
+        return selectedDraw;
     }
 
     public void setSelected(boolean selected) {
-        this.selected = selected;
+        this.selectedDraw = selected;
     }
 
-    public String getRol() {
+    public int getRol() {
         return rol;
+    }
+
+    public boolean isSelectedDraw() {
+        return selectedDraw;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public int getRemeaningMeals() {
+        return remeaningMeals;
+    }
+
+    public boolean isSuscribedMeal() {
+        return suscribedMeal;
     }
 }

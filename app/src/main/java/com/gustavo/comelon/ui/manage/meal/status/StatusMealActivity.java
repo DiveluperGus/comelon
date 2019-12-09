@@ -147,15 +147,15 @@ public class StatusMealActivity extends AppCompatActivity implements View.OnClic
 
     private void fillCommensalList() {
         commensals = new ArrayList<>();
-        commensals.add(new Commensal("Gustavo", "Reyes", "gustavo@gmail.com", "2721244358", false));
-        commensals.add(new Commensal("David", "Sanchez", "david@gmail.com", "2721244310", false));
-        commensals.add(new Commensal("Itzel", "Cancio", "itzel@gmail.com", "2721244320", false));
-        commensals.add(new Commensal("Fernando", "Andrade", "fernando@gmail.com", "2721244330", false));
-        commensals.add(new Commensal("Celeste", "Pérez", "celeste@gmail.com", "2721244340", false));
-        commensals.add(new Commensal("Carlos", "Martinez", "carlos@gmail.com", "2721244350", false));
-        commensals.add(new Commensal("Andres", "Esteban", "andres@gmail.com", "2721244360", false));
-        commensals.add(new Commensal("Salvador", "Gonzalez", "salvador@gmail.com", "2721244370", false));
-        commensals.add(new Commensal("Aracely", "Reyes", "aracely@gmail.com", "2721244380", false));
-        commensals.add(new Commensal("José Antonio", "Pintor", "antonio@gmail.com", "2721244390", false));
+        commensals.add(new Commensal("Gustavo", "Reyes", "gustavo@gmail.com", "2721244358", 2, false));
+        commensals.add(new Commensal("David", "Sanchez", "david@gmail.com", "2721244310", 2, false));
+        commensals.add(new Commensal("Itzel", "Cancio", "itzel@gmail.com", "2721244320", 2, false));
+        commensals.add(new Commensal("Fernando", "Andrade", "fernando@gmail.com", "2721244330", 2, false));
+        commensals.add(new Commensal("Celeste", "Pérez", "celeste@gmail.com", "2721244340", 2, false));
+        commensals.add(new Commensal("Carlos", "Martinez", "carlos@gmail.com", "2721244350", 2, false));
+        commensals.add(new Commensal("Andres", "Esteban", "andres@gmail.com", "2721244360", 2, false));
+        commensals.add(new Commensal("Salvador", "Gonzalez", "salvador@gmail.com", "2721244370", 2, false));
+        commensals.add(new Commensal("Aracely", "Reyes", "aracely@gmail.com", "2721244380", 2, false));
+        commensals.add(new Commensal("José Antonio", "Pintor", "antonio@gmail.com", "2721244390", 2, false));
     }
 }

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.manage.commensal.consult.ModifyStatusCommensal">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingStart="@dimen/activity_normal_margin"
+        android:paddingTop="@dimen/activity_normal_margin"
+        android:paddingEnd="@dimen/activity_normal_margin"
+        android:paddingBottom="@dimen/activity_normal_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/msg_info_commensal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Title3.Regular"
+            android:text="Información del comensal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/txt_name_commensal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Title3.Bold"
+            android:text="Nombre del comensal"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="@dimen/activity_middle_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/msg_info_commensal" />
+
+        <TextView
+            android:id="@+id/txt_comment_by_commensal"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            style="@style/Title3.Regular"
+            android:text="Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book."
+            android:layout_marginTop="@dimen/activity_normal_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_name_commensal" />
+
+        <CheckBox
+            android:id="@+id/checkbox_meal_paidUp"
+            style="@style/Title3.Bold"
+            android:text="Ya pagó la comida"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_normal_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_comment_by_commensal"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_meal_delivered"
+            style="@style/Title3.Bold"
+            android:text="Ya se le entregó la comida"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_middle_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/checkbox_meal_paidUp"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_accept_changes"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            style="@style/Title2.Bold"
+            android:textAllCaps="false"
+            android:text="Aceptar cambios"
+            android:layout_marginTop="@dimen/activity_high_margin"
+            android:backgroundTint="@color/greenNormal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/checkbox_meal_delivered" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_delete_commensal"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            style="@style/Title2.Bold"
+            android:textAllCaps="false"
+            android:text="Eliminar de la comida"
+            android:layout_marginTop="@dimen/activity_normal_margin"
+            android:backgroundTint="@color/redNormal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_accept_changes" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

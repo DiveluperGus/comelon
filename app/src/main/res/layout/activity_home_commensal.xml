@@ -4,6 +4,205 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundLight"
     tools:context=".ui.home.commensal.HomeCommensalActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/toolbarBackground"
+        app:contentInsetStart="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            style="@style/Title2.Bold"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="36dp"
+            android:gravity="center"
+            android:text="Home"
+            android:textColor="@color/whiteNormal" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingStart="@dimen/activity_normal_margin"
+        android:paddingTop="@dimen/activity_normal_margin"
+        android:paddingEnd="@dimen/activity_normal_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <TextView
+            android:id="@+id/welcome_home"
+            style="@style/Title1.Regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bienvenido"
+            android:textColor="@color/blackNormal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_username_home"
+            style="@style/Title1.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_normal_margin"
+            android:gravity="center_horizontal"
+            android:text="Nombre usuario"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/welcome_home" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_no_meals_created"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:background="@drawable/background_no_meals_created"
+            android:layout_marginTop="@dimen/activity_high_margin"
+            android:paddingStart="@dimen/activity_middle_margin"
+            android:paddingTop="@dimen/activity_middle_margin"
+            android:paddingEnd="@dimen/activity_middle_margin"
+            android:paddingBottom="@dimen/activity_middle_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_username_home"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline">
+
+            <TextView
+                android:id="@+id/msg_no_meals_created"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Title3.Bold"
+                android:text="Lo sentimos, no hay ninguna comida creada"
+                android:gravity="center_horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_sentiment_very_dissatisfied"
+                android:layout_marginTop="@dimen/activity_normal_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/msg_no_meals_created"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_meal_created"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/background_no_meals_created"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/activity_high_margin"
+            android:paddingStart="@dimen/activity_middle_margin"
+            android:paddingTop="@dimen/activity_middle_margin"
+            android:paddingEnd="@dimen/activity_middle_margin"
+            android:paddingBottom="@dimen/activity_middle_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_username_home"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline">
+
+            <TextView
+                android:id="@+id/txt_msg_meal_created"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Title3.Bold"
+                android:text="Está disponible la comida, pollo en salsa verde hasta las 11:30 del día 11/11/2019"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_request_meal"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                style="@style/Title3.Bold"
+                android:text="Solicitar comida"
+                android:textAllCaps="false"
+                android:layout_marginStart="@dimen/activity_high_margin"
+                android:layout_marginEnd="@dimen/activity_high_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_meal_requested"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/background_no_meals_created"
+            android:visibility="visible"
+            android:layout_marginTop="@dimen/activity_high_margin"
+            android:paddingStart="@dimen/activity_middle_margin"
+            android:paddingTop="@dimen/activity_middle_margin"
+            android:paddingEnd="@dimen/activity_middle_margin"
+            android:paddingBottom="@dimen/activity_middle_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_username_home"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline">
+
+            <TextView
+                android:id="@+id/msg_meal_requested"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Title3.Bold"
+                android:text="Solicitaste la comida"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/txt_msg_meal_requested"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Title2.Bold"
+                android:text="Pollo en salsa verde"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="@dimen/activity_normal_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/msg_meal_requested"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_cancel_meal"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                style="@style/Title3.Bold"
+                android:text="Cancelar comida"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/redNormal"
+                android:layout_marginStart="@dimen/activity_high_margin"
+                android:layout_marginEnd="@dimen/activity_high_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_see_last_you_has_eat"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginTop="@dimen/activity_xhigh_margin"
+            android:backgroundTint="@color/greenNormal"
+            style="@style/Title2.Bold"
+            android:text="Ve lo último que has comido"
+            android:textAllCaps="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guideline"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".5"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

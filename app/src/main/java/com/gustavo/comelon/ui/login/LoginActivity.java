@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private static final String TAG = "LoginActivity";
-    private int typeUser = 1;
+    private int typeUser = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

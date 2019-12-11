@@ -41,8 +41,6 @@ public class LoginActivity extends AppCompatActivity {
     MaterialButton btnLogin;
     @BindView(R.id.txt_signUp)
     TextView txtSignUp;
-    @BindView(R.id.txt_forgot_password)
-    TextView txtForgotPassword;
 
     private FirebaseAuth mAuth;
     private static final String TAG = "LoginActivity";
@@ -59,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
         clearFields();
         setBtnLogin();
         setBtnSignUp();
-        setBtnForgotPass();
 
     }
 
@@ -85,12 +82,6 @@ public class LoginActivity extends AppCompatActivity {
         txtSignUp.setOnClickListener(view -> {
             Intent i = new Intent(this, SignupActivity.class);
             startActivity(i);
-        });
-    }
-
-    private void setBtnForgotPass() {
-        txtForgotPassword.setOnClickListener(view -> {
-            Toast.makeText(this, "Olvidé mi contraseña", Toast.LENGTH_SHORT).show();
         });
     }
 

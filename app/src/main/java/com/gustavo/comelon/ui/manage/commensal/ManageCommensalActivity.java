@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.gustavo.comelon.R;
+import com.gustavo.comelon.ui.manage.commensal.add.AddCommensalActivity;
 import com.gustavo.comelon.ui.manage.commensal.consult.ConsultCommensalsActivity;
 import com.gustavo.comelon.utils.Constants;
 
@@ -72,7 +73,7 @@ public class ManageCommensalActivity extends AppCompatActivity {
         }
         //Botón siempre disponible
         btnAddCom.setOnClickListener(view ->{
-
+            startActivity(new Intent(ManageCommensalActivity.this, AddCommensalActivity.class));
         });
     }
 

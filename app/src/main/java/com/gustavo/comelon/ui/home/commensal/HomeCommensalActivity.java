@@ -6,12 +6,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,6 +55,9 @@ public class HomeCommensalActivity extends AppCompatActivity {
     @BindView(R.id.btn_see_last_you_has_eat)
     MaterialButton btnSeeLastYouHasEat;
 
+    private SharedPreferences prefs;
+    private String userName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +66,7 @@ public class HomeCommensalActivity extends AppCompatActivity {
 
         setToolbar();
         setBtnsView();
-
+        setViews();
     }
 
 
@@ -106,6 +111,16 @@ public class HomeCommensalActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void setViews() {
+        getDataSharedPrefs();
+        username.setText(userName);
+    }
+
+    private void getDataSharedPrefs() {
+        prefs = getSharedPreferences("user",MODE_PRIVATE);
+        userName = prefs.getString("name","Nombre del comensal");
     }
 
     @Override

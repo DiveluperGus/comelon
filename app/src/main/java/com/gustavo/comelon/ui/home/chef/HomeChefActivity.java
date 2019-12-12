@@ -1,12 +1,14 @@
 package com.gustavo.comelon.ui.home.chef;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +37,9 @@ public class HomeChefActivity extends AppCompatActivity {
     @BindView(R.id.btn_manage_commensal_home)
     MaterialButton btnManageCommensal;
 
+    private SharedPreferences prefs;
+    private String userName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +49,7 @@ public class HomeChefActivity extends AppCompatActivity {
         setToolbar();
         setBtnManageMeal();
         setBtnManageCommensal();
+        setViews();
     }
 
     private void setBtnManageMeal() {
@@ -69,7 +75,6 @@ public class HomeChefActivity extends AppCompatActivity {
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -84,6 +89,18 @@ public class HomeChefActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
+    private void setViews() {
+        getDataSharedPrefs();
+        username.setText(userName);
+    }
+
+    private void getDataSharedPrefs() {
+        prefs = getSharedPreferences("user",MODE_PRIVATE);
+        userName = prefs.getString("name","");
+    }
+
 
     @Override
     public void onBackPressed() {

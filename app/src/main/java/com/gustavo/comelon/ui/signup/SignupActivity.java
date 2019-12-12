@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,13 +15,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.SignInMethodQueryResult;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.gustavo.comelon.R;
 import com.gustavo.comelon.ui.login.LoginActivity;
 import com.gustavo.comelon.utils.Regex;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 
 import butterknife.BindView;
@@ -36,8 +42,8 @@ public class SignupActivity extends AppCompatActivity {
     EditText edtxtEmail;
     @BindView(R.id.edtxt_phone)
     EditText edtxtPhone;
-    @BindView(R.id.edtxt_password)
-    EditText edtxtPassword;
+    @BindView(R.id.edtxt_password_user)
+    TextInputEditText edtxtPassword;
     @BindView(R.id.txt_fields_required)
     TextView txtFieldsRequired;
     @BindView(R.id.txt_error_email)
@@ -47,9 +53,12 @@ public class SignupActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_signup)
     MaterialButton btnSigUp;
+    @BindView(R.id.progressbarSignup)
+    ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
     private static final String TAG = "SignupActivity";
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +67,7 @@ public class SignupActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         setBtnSignUp();
     }
@@ -89,9 +99,11 @@ public class SignupActivity extends AppCompatActivity {
 
 
     private void verifyUserExists(final String email, final String password) {
+        progressBar.setVisibility(View.VISIBLE);
         mAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
             @Override
             public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     Log.d(TAG, "checking to see if user exists in firebase or not");
                     SignInMethodQueryResult result = task.getResult();
@@ -115,16 +127,42 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void signUpUser(String email, String password) {
-        Toast.makeText(this, "Email: " + email + " pass: " + password, Toast.LENGTH_SHORT).show();
+        progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
                             Log.e(TAG, "Account created");
-                            Toast.makeText(SignupActivity.this, "El usuario ha sido creado", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(SignupActivity.this, LoginActivity.class);
-                            startActivity(i);
+
+                            String idUser = mAuth.getCurrentUser().getUid();
+                            Boolean ban = false;
+
+                            Map<String,Object> map = new HashMap<>();
+                            map.put("name",edtxtName.getText().toString());
+                            map.put("surname",edtxtLastName.getText().toString());
+                            map.put("email",edtxtEmail.getText().toString());
+                            map.put("phone",edtxtPhone.getText().toString().isEmpty() ? "" : edtxtPhone.getText().toString());
+                            map.put("rol",1);
+                            map.put("selectedDraw",ban);
+                            map.put("status",0);
+                            map.put("remeaningMeals",0);
+                            map.put("subscribedMeal",ban);
+
+                            mDatabase.child("comelon").child("users").child(idUser).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(SignupActivity.this, "El usuario ha sido creado", Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(SignupActivity.this, LoginActivity.class);
+                                        startActivity(i);
+                                    }else{
+                                        Toast.makeText(SignupActivity.this, "No se pudo registrar el usuarios", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.e(TAG, "createUserWithEmail:failure", task.getException());

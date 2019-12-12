@@ -9,6 +9,17 @@
     android:paddingEnd="@dimen/activity_normal_margin"
     tools:context=".ui.signup.SignupActivity">
 
+    <ProgressBar
+        android:id="@+id/progressbarSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias=".8"/>
+
     <TextView
         style="@style/Title1.Bold"
         android:layout_width="match_parent"
@@ -160,7 +171,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_password"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_normal_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_phoneNumber"
@@ -172,21 +183,35 @@
             android:layout_height="44dp"
             android:src="@drawable/ic_password"
             android:tint="@color/txtDisabled"
+            android:foregroundGravity="center_vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <EditText
-            android:id="@+id/edtxt_password"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            style="@style/Title2.Regular"
-            android:hint="Contraseña*"
-            android:inputType="textPassword"
-            android:singleLine="true"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:passwordToggleEnabled="true"
+            android:padding="0dp"
+            android:background="@color/backgroundLight"
             app:layout_constraintStart_toEndOf="@+id/ic_person_password"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtxt_password_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Title2.Regular"
+                android:hint="Contraseña"
+                android:background="@android:color/transparent"
+                android:inputType="textPassword"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView

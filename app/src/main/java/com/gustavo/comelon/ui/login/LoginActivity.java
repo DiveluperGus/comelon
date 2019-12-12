@@ -1,8 +1,11 @@
 package com.gustavo.comelon.ui.login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +19,13 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.gustavo.comelon.R;
+import com.gustavo.comelon.model.Commensal;
 import com.gustavo.comelon.ui.home.chef.HomeChefActivity;
 import com.gustavo.comelon.ui.home.commensal.HomeCommensalActivity;
 import com.gustavo.comelon.ui.signup.SignupActivity;
@@ -41,10 +50,12 @@ public class LoginActivity extends AppCompatActivity {
     MaterialButton btnLogin;
     @BindView(R.id.txt_signUp)
     TextView txtSignUp;
+    @BindView(R.id.progressbar_login)
+    ProgressBar progressBarLogin;
 
     private FirebaseAuth mAuth;
     private static final String TAG = "LoginActivity";
-    private int typeUser = 2;
+    private int typeUser = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,21 +133,55 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login(String email, String password) {
+        progressBarLogin.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
+
+
+                        progressBarLogin.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
+
+                            progressBarLogin.setVisibility(View.VISIBLE);
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent;
-                            if (typeUser == 1) {
-                                intent = new Intent(LoginActivity.this, HomeChefActivity.class);
-                            } else {
-                                intent = new Intent(LoginActivity.this, HomeCommensalActivity.class);
-                            }
+                            String userId = user.getUid();
+                            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                            mDatabase.child("comelon").child("users").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    progressBarLogin.setVisibility(View.GONE);
+                                    Log.e("LoginActivity","" + dataSnapshot.getValue(Commensal.class).getRol());
+                                    String userName = dataSnapshot.getValue(Commensal.class).getName();
+                                    String surname = dataSnapshot.getValue(Commensal.class).getSurname();
+                                    String email = dataSnapshot.getValue(Commensal.class).getEmail();
+                                    String phone = dataSnapshot.getValue(Commensal.class).getPhone();
+                                    typeUser = dataSnapshot.getValue(Commensal.class).getRol();
 
-                            startActivity(intent);
+                                    saveDatabaseSharedPrefs(userName,surname,email,phone);
+
+                                    Intent intent;
+                                    if (typeUser == 2) {
+                                        intent = new Intent(LoginActivity.this, HomeChefActivity.class);
+                                        startActivity(intent);
+                                    } else if (typeUser == 1){
+                                        intent = new Intent(LoginActivity.this, HomeCommensalActivity.class);
+                                        startActivity(intent);
+                                    } else{
+                                        Toast.makeText(LoginActivity.this, "Inicio de sesión fallido, inténte de nuevo", Toast.LENGTH_SHORT).show();
+                                    }
+
+
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
 
                         } else {
                             Toast.makeText(LoginActivity.this, "Authentication failed",
@@ -145,5 +190,15 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    private void saveDatabaseSharedPrefs(String userName, String surname, String email, String phone) {
+        SharedPreferences prefs = getSharedPreferences("user",MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("name",userName);
+        editor.putString("surname",surname);
+        editor.putString("email",email);
+        editor.putString("phone",phone);
+        editor.apply();
     }
 }

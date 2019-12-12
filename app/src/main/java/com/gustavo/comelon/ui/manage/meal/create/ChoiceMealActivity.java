@@ -73,7 +73,7 @@ public class ChoiceMealActivity extends AppCompatActivity {
             mealList = new ArrayList<>();
             for (int i = 1; i < 10; i++) {
                 mealList.add(new Meal("Pollo " + i, "Arroz " + i, " Hola, esta es la descripción de la comida ",
-                        4, 22.22f, "22/07/2019", "23:40", "created"));
+                        4, 4+i,22.22f, "22/07/2019", "23:40", "created"));
             }
 
             rvMeals.setHasFixedSize(false);

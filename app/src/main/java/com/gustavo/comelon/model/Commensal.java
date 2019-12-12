@@ -32,6 +32,9 @@ public class Commensal {
         this.selectedDraw = selectedDraw;
     }
 
+    public Commensal() {
+    }
+
     public String getName() {
         return name;
     }

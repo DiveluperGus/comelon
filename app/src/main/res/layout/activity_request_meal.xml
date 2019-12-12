@@ -105,6 +105,7 @@
             app:layout_constraintEnd_toEndOf="@+id/guideline"/>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_accept_request_meal"
             android:layout_width="0dp"
             android:layout_height="60dp"
             style="@style/Title2.Bold"

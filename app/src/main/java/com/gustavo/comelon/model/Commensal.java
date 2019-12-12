@@ -78,4 +78,40 @@ public class Commensal {
     public boolean isSuscribedMeal() {
         return suscribedMeal;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setRol(int rol) {
+        this.rol = rol;
+    }
+
+    public void setSelectedDraw(boolean selectedDraw) {
+        this.selectedDraw = selectedDraw;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public void setRemeaningMeals(int remeaningMeals) {
+        this.remeaningMeals = remeaningMeals;
+    }
+
+    public void setSuscribedMeal(boolean suscribedMeal) {
+        this.suscribedMeal = suscribedMeal;
+    }
 }

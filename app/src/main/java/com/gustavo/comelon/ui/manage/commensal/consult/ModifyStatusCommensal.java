@@ -1,6 +1,7 @@
 package com.gustavo.comelon.ui.manage.commensal.consult;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -40,6 +41,7 @@ public class ModifyStatusCommensal extends AppCompatActivity {
 
     private Bundle args;
     private String nameCommensal, surname;
+    private int gPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,7 @@ public class ModifyStatusCommensal extends AppCompatActivity {
         args = getIntent().getExtras();
         nameCommensal = args.getString("nameCommensal","");
         surname = args.getString("surname","");
+        gPosition = args.getInt("position",0);
     }
 
     private void configDataScreen() {
@@ -75,7 +78,7 @@ public class ModifyStatusCommensal extends AppCompatActivity {
         });
 
         btnDeleteCommensal.setOnClickListener(view -> {
-            Toast.makeText(this, "Delete", Toast.LENGTH_SHORT).show();
+            showAlertDialogDeleteCommensal();
         });
     }
 
@@ -83,16 +86,33 @@ public class ModifyStatusCommensal extends AppCompatActivity {
         if (cbMealPaidUp.isSelected()) {
             if (cbMealDelivered.isSelected()) {
                 //Pagó y se le entregó
+                    saveChangesOnSharedPrefs(1);
+                    finish();
             } else {
                 //Pagó y no se le entregó aún
+                saveChangesOnSharedPrefs(2);
+                finish();
             }
         } else {
             if (cbMealDelivered.isSelected()) {
                 //No pagó y se le entregó la comida
+                saveChangesOnSharedPrefs(3);
+                finish();
             } else {
                 //No pagó y no se le entegó la comida aún
+                saveChangesOnSharedPrefs(4);
+                finish();
             }
         }
+    }
+
+    private void saveChangesOnSharedPrefs(int status) {
+        SharedPreferences prefs = getSharedPreferences("commensal_status",MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("statusChanged",true);
+        editor.putInt("position",gPosition);
+        editor.putInt("status",status);
+        editor.apply();
     }
 
     private void showAlertDialogDeleteCommensal() {
@@ -103,7 +123,8 @@ public class ModifyStatusCommensal extends AppCompatActivity {
         builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
+                saveChangesOnSharedPrefs(0);
+                finish();
             }
         });
 

@@ -73,7 +73,7 @@ public class ManageMealActivity extends AppCompatActivity implements View.OnClic
                 disableButton(btnEditMeal);
                 disableButton(btnStatusMeal);
                 disableButton(btnDeleteMeal);
-            } else if(statusMeal.equals("complete") || statusMeal.equals("deleted")){
+            } else if(statusMeal.equals("complete") || statusMeal.equals("deleted") || statusMeal.equals("")){
                 enableButton(btnCreateMeal,R.color.blueNormal);
                 disableButton(btnEditMeal);
                 disableButton(btnStatusMeal);

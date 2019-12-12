@@ -48,10 +48,16 @@ public class StatusCommensalAdapter extends RecyclerView.Adapter<StatusCommensal
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
+
+
+
         Commensal commensal = commensals.get(position);
 
         holder.txtNumberCommensal.setText((position+1) + ".");
         holder.txtNameCommensal.setText(commensal.getName() + " " + commensal.getSurname());
+        if(commensals.get(position).getStatus() == 0){
+            holder.txtNameCommensal.setText(commensal.getName() + " " + commensal.getSurname() + " - eliminado");
+        }
         if (commensal.getStatus() == 1) {
             holder.imgviewStatusCommensal.setBackgroundColor(ctx.getResources().getColor(R.color.greenNormal));
         } else if (commensal.getStatus() == 2) {
@@ -67,6 +73,7 @@ public class StatusCommensalAdapter extends RecyclerView.Adapter<StatusCommensal
             Bundle args = new Bundle();
             String name = commensal.getName();
             String surname = commensal.getSurname();
+            args.putInt("position",position);
             args.putString("nameCommensal",name);
             args.putString("surname",surname);
             i.putExtras(args);

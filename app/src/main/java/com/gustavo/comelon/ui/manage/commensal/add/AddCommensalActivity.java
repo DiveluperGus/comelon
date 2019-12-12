@@ -105,6 +105,7 @@ public class AddCommensalActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
                 numMealsToAdd = edtxtNumberMealsToAdd.getText().toString();
+                Toast.makeText(AddCommensalActivity.this, "Comensal agregado a "+ numMealsToAdd + " comidas", Toast.LENGTH_SHORT).show();
             }
         });
 

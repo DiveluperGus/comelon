@@ -1,5 +1,6 @@
 package com.gustavo.comelon.ui.manage.commensal.consult;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -35,6 +36,9 @@ public class ConsultCommensalsActivity extends AppCompatActivity {
     private StatusCommensalAdapter adapterStatusCom;
     private List<Commensal> commensals;
 
+    private Boolean statusChanged;
+    private int gPosition, gStatus;
+    private SharedPreferences prefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +47,16 @@ public class ConsultCommensalsActivity extends AppCompatActivity {
 
         setToolbar();
         loadCommensals();
+        getDataFromSharedPrefs();
         configRecyclerView();
+    }
+
+    private void getDataFromSharedPrefs() {
+        prefs = getSharedPreferences("commensal_status",MODE_PRIVATE);
+        statusChanged = prefs.getBoolean("statusChanged",false);
+        gPosition = prefs.getInt("position",0);
+        gStatus = prefs.getInt("status",0);
+
     }
 
     private void setToolbar() {
@@ -69,9 +82,23 @@ public class ConsultCommensalsActivity extends AppCompatActivity {
     }
 
     private void configRecyclerView() {
-        rvStatusCommensal.setHasFixedSize(false);
+
+        rvStatusCommensal.setHasFixedSize(true);
         adapterStatusCom = new StatusCommensalAdapter(commensals,getApplicationContext());
         rvStatusCommensal.setLayoutManager(new LinearLayoutManager(this));
         rvStatusCommensal.setAdapter(adapterStatusCom);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        getDataFromSharedPrefs();
+
+        if(statusChanged){
+            commensals.get(gPosition).setSelected(true);
+            commensals.get(gPosition).setStatus(gStatus);
+            adapterStatusCom.notifyDataSetChanged();
+        }
     }
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@drawable/background_congratulations_meal_requested"
+    android:paddingStart="@dimen/activity_normal_margin"
+    android:paddingTop="@dimen/activity_normal_margin"
+    android:paddingEnd="@dimen/activity_normal_margin"
+    android:paddingBottom="@dimen/activity_normal_margin">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Title3.Bold"
+        android:text="¡Felicidades, la operación fue con éxito!"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Title3.Bold"
+        android:text="Que disfrute su comida."
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"/>
+
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/ic_sentiment_satisfied"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/activity_normal_margin"
+        />
+
+    <TextView
+        android:id="@+id/txt_accept_requested"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        style="@style/Title2.Bold"
+        android:text="Aceptar"
+        android:textColor="@color/whiteNormal"
+        android:gravity="center"
+        android:background="@color/colorPrimary"/>
+</LinearLayout>

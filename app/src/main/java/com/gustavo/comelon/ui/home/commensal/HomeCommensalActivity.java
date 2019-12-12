@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.gustavo.comelon.R;
+import com.gustavo.comelon.ui.last_requested.LastMealsRequestedActivity;
 import com.gustavo.comelon.ui.login.LoginActivity;
 import com.gustavo.comelon.ui.meal.request.RequestMealActivity;
 import com.gustavo.comelon.ui.modify_info.ModifyInfoActivity;
@@ -71,14 +72,18 @@ public class HomeCommensalActivity extends AppCompatActivity {
     }
 
     private void setBtnsView() {
-        ///////////////////Primera opción//////////////////////////
+        ///////////////////Primera opción////////////////////////////
 
         ///////////////////Segunda opción/////////////////////////////
         btnRequestMeal.setOnClickListener(view -> {
             startActivity(new Intent(HomeCommensalActivity.this, RequestMealActivity.class));
         });
 
+        //////////////////Tercera opción/////////////////////////////
 
+        btnSeeLastYouHasEat.setOnClickListener(view -> {
+            startActivity(new Intent(HomeCommensalActivity.this, LastMealsRequestedActivity.class));
+        });
     }
 
     @Override

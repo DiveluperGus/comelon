@@ -76,7 +76,7 @@ public class ChoiceMealActivity extends AppCompatActivity {
                         4, 22.22f, "22/07/2019", "23:40", "created"));
             }
 
-            rvMeals.setHasFixedSize(true);
+            rvMeals.setHasFixedSize(false);
             rvMeals.setLayoutManager(new LinearLayoutManager(this));
             MealAdapter mealAdapter = new MealAdapter(getApplicationContext(), mealList);
             rvMeals.setAdapter(mealAdapter);

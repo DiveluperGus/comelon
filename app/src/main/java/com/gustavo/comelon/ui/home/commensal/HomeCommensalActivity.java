@@ -17,6 +17,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.gustavo.comelon.R;
 import com.gustavo.comelon.ui.login.LoginActivity;
+import com.gustavo.comelon.ui.meal.request.RequestMealActivity;
 import com.gustavo.comelon.ui.modify_info.ModifyInfoActivity;
 
 import butterknife.BindView;
@@ -58,12 +59,26 @@ public class HomeCommensalActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setToolbar();
+        setBtnsView();
 
     }
+
+
 
     private void setToolbar() {
         setSupportActionBar(toolbar);
         toolbar.getOverflowIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+    }
+
+    private void setBtnsView() {
+        ///////////////////Primera opción//////////////////////////
+
+        ///////////////////Segunda opción/////////////////////////////
+        btnRequestMeal.setOnClickListener(view -> {
+            startActivity(new Intent(HomeCommensalActivity.this, RequestMealActivity.class));
+        });
+
+
     }
 
     @Override

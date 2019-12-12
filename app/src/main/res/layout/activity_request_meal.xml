@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundLight"
+    tools:context=".ui.meal.request.RequestMealActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingStart="@dimen/activity_normal_margin"
+        android:paddingTop="@dimen/activity_normal_margin"
+        android:paddingEnd="@dimen/activity_normal_margin"
+        android:paddingBottom="@dimen/activity_normal_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/msg_in_good_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Title3.Regular"
+            android:text="¡En hora buena! Termina el proceso de solicitud para la comida"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/txt_msg_meal_will_request"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Title3.Bold"
+            android:text="Pollo en salsa verde"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="@dimen/activity_normal_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/msg_in_good_time"/>
+
+        <TextView
+            android:id="@+id/msg_write_some_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_high_margin"
+            style="@style/Title3.Regular"
+            android:text="Puedes escribir algún comentario sobre tu comida que podrá ver la chef"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_msg_meal_will_request"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtInputLay_comment"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:counterEnabled="true"
+            app:counterMaxLength="250"
+            android:background="@drawable/background_no_meals_created"
+            app:counterOverflowTextAppearance="@style/Title4.Regular"
+            app:counterTextColor="@color/colorAccent"
+            android:layout_marginTop="@dimen/activity_normal_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/msg_write_some_comment">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:gravity="start|top"
+                android:layout_marginStart="@dimen/activity_middle_margin"
+                android:layout_marginTop="@dimen/activity_middle_margin"
+                android:layout_marginEnd="@dimen/activity_middle_margin"
+                android:layout_marginBottom="@dimen/activity_middle_margin" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/msg_finalize_process"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Title3.Regular"
+            android:text="Para finalizar da click en el botón Aceptar"
+            android:layout_marginTop="@dimen/activity_high_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtInputLay_comment" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cancel_request_meal"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            style="@style/Title2.Bold"
+            android:text="Cancelar"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/blueNormal"
+            android:layout_marginEnd="@dimen/activity_normal_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/guideline"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            style="@style/Title2.Bold"
+            android:text="Aceptar"
+            android:textAllCaps="false"
+            android:layout_marginStart="@dimen/activity_normal_margin"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".5"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
